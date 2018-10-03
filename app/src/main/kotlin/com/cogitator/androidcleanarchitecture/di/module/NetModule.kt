@@ -1,20 +1,33 @@
 package com.cogitator.androidcleanarchitecture.di.module
 
-import android.content.Intent
+import com.cogitator.androidcleanarchitecture.CleanAndroidApp
+import com.cogitator.androidcleanarchitecture.network.ApiHelper
+import com.cogitator.androidcleanarchitecture.network.ServiceApi
+import com.cogitator.androidcleanarchitecture.utils.BASE_URL
+import dagger.Module
+import dagger.Provides
+import okhttp3.Cache
+import okhttp3.CookieJar
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 /**
  * @author Ankit Kumar on 01/10/2018
  */
 
 @Module
-class NetModule(var app: MyPortfolioApp) {
+class NetModule(var app: CleanAndroidApp) {
     @Provides
     @Singleton
     fun provideNetworkHelper(retrofit: Retrofit): ApiHelper {
-        val platformAPI = retrofit.create(PlatformAPI::class.java)
+        val platformAPI = retrofit.create(ServiceApi::class.java)
         return ApiHelper(platformAPI)
     }
 
@@ -36,28 +49,6 @@ class NetModule(var app: MyPortfolioApp) {
 
         val httpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-                .addInterceptor { chain ->
-                    val requestBuilder = chain.request().newBuilder()
-
-                    requestBuilder.addHeader("Accept", "application/json;")
-                    if (DataHolder.getInstance().cookies != null)
-                        requestBuilder.addHeader("Cookie", DataHolder.getInstance().cookies!!)
-
-                    val token = DataHolder.getInstance().token
-                    if (token != null)
-                        requestBuilder.addHeader("Authorization", "bearer $token")
-
-                    val response = chain.proceed(requestBuilder.build())
-                    val rawCookie = response.headers().get("Set-Cookie")
-                    if (DataHolder.getInstance().cookies == null)
-                        DataHolder.getInstance().cookies = rawCookie
-                    if (response.code() == 401 && !chain.request().url().encodedPath().contains(LOGIN_URL)) {
-                        val loginActivity = LoginActivity()
-                        loginActivity.source = "401"
-                        app.applicationContext.startActivity(Intent(app.applicationContext, loginActivity::class.java))
-                    }
-                    response
-                }
                 .cookieJar(CookieJar.NO_COOKIES)
                 .cache(cache)
                 .connectTimeout(45, TimeUnit.SECONDS)
