@@ -5,7 +5,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.cogitator.androidcleanarchitecture.CleanAndroidApp
-import org.xml.sax.ErrorHandler
+import dagger.Provides
+import javax.inject.Singleton
 
 /**
  * @author Ankit Kumar on 01/10/2018
@@ -13,7 +14,6 @@ import org.xml.sax.ErrorHandler
 
 
 class AppModule(var app: CleanAndroidApp) {
-
 
     @Provides
     @Singleton
@@ -28,9 +28,9 @@ class AppModule(var app: CleanAndroidApp) {
     @Singleton
     fun provideSharedPreferences(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(app)
 
-    @Provides
-    @Singleton
-    fun provideErrorHandler() = ErrorHandler()
+//    @Provides
+//    @Singleton
+//    fun provideErrorHandler() = ErrorHandler()
 
 
 }

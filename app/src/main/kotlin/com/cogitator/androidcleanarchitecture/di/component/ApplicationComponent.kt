@@ -4,7 +4,13 @@ import android.app.Application
 import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
 import android.content.SharedPreferences
+import com.cogitator.androidcleanarchitecture.CleanAndroidApp
+import com.cogitator.androidcleanarchitecture.di.module.AppModule
+import com.cogitator.androidcleanarchitecture.di.module.NetModule
+import com.cogitator.androidcleanarchitecture.network.ApiHelper
+import dagger.Component
 import org.xml.sax.ErrorHandler
+import javax.inject.Singleton
 
 /**
  * @author Ankit Kumar on 01/10/2018
@@ -14,7 +20,7 @@ import org.xml.sax.ErrorHandler
 @Component(modules = [AppModule::class, NetModule::class])
 interface ApplicationComponent {
 
-    fun inject(app: MyPortfolioApp)
+    fun inject(app: CleanAndroidApp)
 
     fun app(): Application
 
