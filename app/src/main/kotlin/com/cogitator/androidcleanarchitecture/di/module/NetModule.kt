@@ -1,8 +1,8 @@
 package com.cogitator.androidcleanarchitecture.di.module
 
 import com.cogitator.androidcleanarchitecture.CleanAndroidApp
-import com.cogitator.androidcleanarchitecture.network.ApiHelper
-import com.cogitator.androidcleanarchitecture.network.ServiceApi
+import com.cogitator.androidcleanarchitecture.model.network.ApiHelper
+import com.cogitator.androidcleanarchitecture.model.network.ServiceApi
 import com.cogitator.androidcleanarchitecture.utils.BASE_URL
 import dagger.Module
 import dagger.Provides

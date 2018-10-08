@@ -7,7 +7,7 @@ import android.content.SharedPreferences
 import com.cogitator.androidcleanarchitecture.CleanAndroidApp
 import com.cogitator.androidcleanarchitecture.di.module.AppModule
 import com.cogitator.androidcleanarchitecture.di.module.NetModule
-import com.cogitator.androidcleanarchitecture.network.ApiHelper
+import com.cogitator.androidcleanarchitecture.model.network.ApiHelper
 import dagger.Component
 import org.xml.sax.ErrorHandler
 import javax.inject.Singleton

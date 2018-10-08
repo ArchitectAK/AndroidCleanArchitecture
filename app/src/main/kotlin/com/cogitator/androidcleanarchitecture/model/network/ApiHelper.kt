@@ -1,4 +1,4 @@
-package com.cogitator.androidcleanarchitecture.network
+package com.cogitator.androidcleanarchitecture.model.network
 
 import com.cogitator.androidcleanarchitecture.model.Repo
 import com.cogitator.androidcleanarchitecture.model.UserProfile
