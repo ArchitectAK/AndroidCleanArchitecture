@@ -27,10 +27,4 @@ class AppModule(var app: CleanAndroidApp) {
     @Provides
     @Singleton
     fun provideSharedPreferences(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(app)
-
-//    @Provides
-//    @Singleton
-//    fun provideErrorHandler() = ErrorHandler()
-
-
 }

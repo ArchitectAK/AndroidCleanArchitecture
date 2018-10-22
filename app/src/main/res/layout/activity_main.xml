@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.myPortfolio.viewmodel.DashboardViewModel" />
+            type="com.cogitator.androidcleanarchitecture.viewModel.MainViewModel" />
     </data>
 
 
